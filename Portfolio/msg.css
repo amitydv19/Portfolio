@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.message{
+    color: #fff;
+    /* text-align: center; */
+    /* background-color: aqua; */
+    padding-left: 200px;
+    padding-top: 250px;
+}
+.message h1{
+    /* text-align: center; */
+    /* right: 20px; */
+    background-color: red;
+    margin-right: 1100px;
+    border:1px solid black;
+    border-radius: 4px;
+    font-family: Poppins;
+    
+    
+}
+.message1{
+    margin-left: 230px;
+    padding-top: 10px;
+}
+.message1 p{
+    font-family: Poppins;
+    
+}
