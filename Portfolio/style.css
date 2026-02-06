@@ -122,6 +122,46 @@ section .title::after{
 .navbar.sticky .menu li a:hover{
     color: #fff;
 }
+.navbar .menu li a {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+.navbar .menu li a.active {
+  color: #ff0033;   /* red text */
+}
+
+.navbar .menu li a.active::after {
+  width: 100%;
+}
+.navbar .menu li a::after {
+  box-shadow: 0 0 6px rgba(255,255,255,0.6);
+}
+
+
+/* underline uses text color */
+.navbar .menu li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+/* hover */
+.navbar .menu li a:hover {
+  color: #fff; /* stays visible on red bg */
+}
+
+.navbar .menu li a:hover::after {
+  width: 100%;
+}
+
 
 /* menu btn styling */
 .menu-btn{
@@ -160,38 +200,55 @@ section .title::after{
 
 
 /* home section styling */
-.home{
-    display: flex;
-    background-color: #191919;
-    height: 100vh;
-    color: #fff;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 500px;
-    background-size: cover;
-    background-attachment: fixed;
-    font-family: 'Ubuntu', sans-serif;
+.home {
+  display: flex;
+  background-color: #191919;
+  height: 100vh;
+  color: #fff;
+  justify-content: center;    /* ✅ center content */
+  align-items: center;
+  min-height: 500px;
+  font-family: 'Ubuntu', sans-serif;
 }
+.home .max-width {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* text left, image right */
+  padding: 0 40px;
+}
+
 .hero-img {
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    padding: 6px;
-    background: linear-gradient(135deg, #ff004f, #ff7a00);
-    float: right;
-    margin-left: 18px;
-    flex-shrink: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, #ff004f, #ff7a00);
+  margin-left: auto;
+  flex-shrink: 0;
+
+  transition: transform 0.5s ease; /* smooth container motion */
 }
+
+
+
 
 /* Image */
 .hero-img img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-    margin-right: 300px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
 }
+.hero-img img {
+  will-change: transform;
+}
+
+
 
 /* Hover ONLY on Image */
 .hero-img img:hover {
@@ -338,145 +395,372 @@ section .title::after{
 }
 
 /* skills section styling */
+/* ================= TECH SKILLS SECTION ================= */
 
-.skills .title::after{
-    content: "what i know";
-}
-.skills .skills-content .column{
-    width: calc(50% - 30px);
-}
-.skills .skills-content .left .text{
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-.skills .skills-content .left p{
-    text-align: justify;
-}
-.skills .skills-content .left a{
-    display: inline-block;
-    background: crimson;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 8px 16px;
-    margin-top: 20px;
-    border-radius: 6px;
-    border: 2px solid crimson;
-    transition: all 0.3s ease;
-}
-.skills .skills-content .left a:hover{
-    color: crimson;
-    background: none;
-}
-.skills .skills-content .right .bars{
-    margin-bottom: 15px;
-}
-.skills .skills-content .right .info{
-    display: flex;
-    margin-bottom: 5px;
-    align-items: center;
-    justify-content: space-between;
-}
-.skills .skills-content .right span{
-    font-weight: 500;
-    font-size: 18px;
-}
-.skills .skills-content .right .line{
-    height: 5px;
-    width: 100%;
-    background: lightgrey;
-    position: relative;
-}
-.skills .skills-content .right .line::before{
-    content: "";
-    position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: crimson;
-}
-.skills-content .right .html::before{
-    width: 90%;
-}
-.skills-content .right .css::before{
-    width: 60%;
-}
-.skills-content .right .js::before{
-    width: 80%;
-}
-.skills-content .right .react::before{
-    width: 70%;
-}
-.skills-content .right .mongodb::before{
-    width: 50%;
-}
-.skills-content .right .reactnative::before{
-    width: 50%;
+.tech-wrapper {
+  padding: 60px 6%;
 }
 
-/* teams section styling */
-.teams .title::after{
-    content: "who with me";
+/* Intro text */
+.intro-box {
+  text-align: center;
+  margin-bottom: 50px;
 }
-.teams .carousel .card{
-    background: #222;
-    border-radius: 6px;
-    padding: 25px 35px;
-    text-align: center;
-    overflow: hidden;
-    transition: all 0.3s ease;
+
+.intro-box h1 {
+  font-size: 42px;
+  line-height: 1.2;
 }
-.teams .carousel .card:hover{
-    background: crimson;
+
+.intro-box h1 span {
+  color: crimson;
 }
-.teams .carousel .card .box{
-    display: flex;
+
+.intro-box p {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+/* Main grid (Frontend | Backend | Database | Tech) */
+.tech-grid-main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+}
+
+/* Category box */
+.tech-box {
+  background: #fafafa;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.tech-box h3 {
+  color: crimson;
+  font-size: 20px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+/* Grid inside each category */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Skill card */
+.tech-card {
+  background: #f7f7f7;
+  border-radius: 16px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;     /* logo on top, text below */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Logo */
+.tech-card img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  margin-bottom: 2px;
+}
+
+/* Tech name */
+.tech-card span {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Hover effect (subtle) */
+.tech-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .tech-grid-main {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+  .home .max-width {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-.teams .carousel .card:hover .box{
-    transform: scale(1.05);
-}
-.teams .carousel .card .text{
-    font-size: 25px;
-    font-weight: 500;
-    margin: 10px 0 7px 0;
-}
-.teams .carousel .card img{
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid crimson;
-    transition: all 0.3s ease;
-}
-.teams .carousel .card:hover img{
-    border-color: #fff;
-}
-.owl-dots{
     text-align: center;
-    margin-top: 20px;
+  }
+
+  .hero-img {
+    margin: 30px auto 0;
+  }
 }
-.owl-dot{
-    height: 13px;
-    width: 13px;
-    margin: 0 5px;
-    outline: none!important;
-    border-radius: 50%;
-    border: 2px solid crimson!important;
-    transition: all 0.3s ease;
+/* ================= PROJECT SECTION ================= */
+.project-card {
+  width: 320px;
+  height: 220px;
+  perspective: 1000px;
 }
-.owl-dot.active{
-    width: 35px;
-    border-radius: 14px;
+
+/* flip container */
+.flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
 }
-.owl-dot.active,
-.owl-dot:hover{
-    background: crimson!important;
+
+/* hover flip */
+.project-card:hover .flip-card {
+  transform: rotateY(180deg);
 }
+
+/* front & back common */
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+.flip-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;   /* smaller than card */
+  overflow: hidden;
+  backface-visibility: hidden;
+
+  /* image as background */
+  background: 
+    linear-gradient(to top,
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.2),
+      transparent
+    ),
+    url("weather.jpg") center / cover no-repeat;
+}
+
+
+/* FRONT IMAGE */
+.flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TEXT ON IMAGE (BOTTOM) */
+.front-text {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  color: #ff0033;
+  font-size: 20px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* dark gradient for readability */
+.flip-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.2),
+    transparent
+  );
+}
+
+/* BACK SIDE */
+.flip-back {
+  background: #111;
+  color: #fff;
+  transform: rotateY(180deg);
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* button bottom */
+.flip-back .view-btn {
+  margin-top: auto;
+  color: #9b5cff;
+  text-decoration: none;
+}
+
+.projects {
+  background: #111;
+  padding: 80px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.projects .title {
+  color: #fff;
+}
+
+/* GRID: 3 x 2 */
+.projects-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* CARD */
+.project-card {
+  background: #1a1a1a;
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border: 2px solid transparent;
+  transition: all 0.5s ease;
+}
+.project-card {
+  width: 340px;          /* ⬆️ slightly bigger frame */
+  height: 240px;
+  padding: 10px;         /* ⬇️ reduce padding */
+  background: #181818;
+  border-radius: 24px;
+}
+
+
+/* 🔥 SMALL IMAGE (FIXED SIZE) */
+.project-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 130px;   /* ✅ SMALL */
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* HOVER EFFECT (same as your site) */
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: crimson;
+  box-shadow: 0 18px 35px rgba(0,0,0,0.4);
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-card:hover h3 {
+  color: crimson;
+}
+
+/* TEXT */
+.project-card h3 {
+  font-size: 18px;
+  color: #fff;
+}
+
+.project-card p {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* BUTTON */
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #9b5cff;
+  text-decoration: none;
+  position: relative;
+  width: fit-content;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+/* underline animation */
+.view-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #9b5cff, #ff004f);
+  transition: width 0.35s ease;
+}
+
+/* hover */
+.view-btn:hover {
+  color: #ff004f;
+}
+
+.view-btn:hover::after {
+  width: 100%;
+}
+
+.btn {
+  width: fit-content;
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid #ff004f;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #ff004f;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .projects-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+
+  .project-image {
+    max-height: 110px;
+  }
+}
+
+
+
 
 /* contact section styling */
 .contact .title::after{
@@ -613,128 +897,3 @@ footer span a:hover{
 
 
 /* responsive media query start */
-@media (max-width: 1104px) {
-    .about .about-content .left img{
-        height: 350px;
-        width: 350px;
-    }
-}
-
-@media (max-width: 991px) {
-    .max-width{
-        padding: 0 50px;
-    }
-}
-@media (max-width: 947px){
-    .menu-btn{
-        display: block;
-        z-index: 999;
-    }
-    .menu-btn i.active:before{
-        content: "\f00d";
-    }
-    .navbar .menu{
-        position: fixed;
-        height: 100vh;
-        width: 100%;
-        left: -100%;
-        top: 0;
-        background: #111;
-        text-align: center;
-        padding-top: 80px;
-        transition: all 0.3s ease;
-    }
-    .navbar .menu.active{
-        left: 0;
-    }
-    .navbar .menu li{
-        display: block;
-    }
-    .navbar .menu li a{
-        display: inline-block;
-        margin: 20px 0;
-        font-size: 25px;
-    }
-    .home .home-content .text-2{
-        font-size: 70px;
-    }
-    .home .home-content .text-3{
-        font-size: 35px;
-    }
-    .home .home-content a{
-        font-size: 23px;
-        padding: 10px 30px;
-    }
-    .max-width{
-        max-width: 930px;
-    }
-    .about .about-content .column{
-        width: 100%;
-    }
-    .about .about-content .left{
-        display: flex;
-        justify-content: center;
-        margin: 0 auto 60px;
-    }
-    .about .about-content .right{
-        flex: 100%;
-    }
-    .services .serv-content .card{
-        width: calc(50% - 10px);
-        margin-bottom: 20px;
-    }
-    .skills .skills-content .column,
-    .contact .contact-content .column{
-        width: 100%;
-        margin-bottom: 35px;
-    }
-}
-
-@media (max-width: 690px) {
-    .max-width{
-        padding: 0 23px;
-    }
-    .home .home-content .text-2{
-        font-size: 60px;
-    }
-    .home .home-content .text-3{
-        font-size: 32px;
-    }
-    .home .home-content a{
-        font-size: 20px;
-    }
-    .services .serv-content .card{
-        width: 100%;
-    }
-}
-
-@media (max-width: 500px) {
-    .home .home-content .text-2{
-        font-size: 50px;
-    }
-    .home .home-content .text-3{
-        font-size: 27px;
-    }
-    .about .about-content .right .text,
-    .skills .skills-content .left .text{
-        font-size: 19px;
-    }
-    .contact .right form .fields{
-        flex-direction: column;
-    }
-    .contact .right form .name,
-    .contact .right form .email{
-        margin: 0;
-    }
-    .right form .error-box{
-       width: 150px;
-    }
-    .scroll-up-btn{
-        right: 15px;
-        bottom: 15px;
-        height: 38px;
-        width: 35px;
-        font-size: 23px;
-        line-height: 38px;
-    }
-}
